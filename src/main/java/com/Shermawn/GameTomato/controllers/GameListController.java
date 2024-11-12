@@ -1,9 +1,12 @@
 package com.Shermawn.GameTomato.controllers;
 
+import com.Shermawn.GameTomato.dto.GameAllDTO;
 import com.Shermawn.GameTomato.dto.GameDTO;
 import com.Shermawn.GameTomato.dto.GameListDTO;
 import com.Shermawn.GameTomato.models.GameList;
+import com.Shermawn.GameTomato.projetctions.GameProjection;
 import com.Shermawn.GameTomato.services.GameListService;
+import com.Shermawn.GameTomato.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +21,8 @@ public class GameListController {
 
     @Autowired
     private GameListService gameListService;
+    @Autowired
+    private GameService gameService;
 
     @GetMapping
     public List<GameListDTO> findAll(){
@@ -25,9 +30,9 @@ public class GameListController {
         return result;
     }
 
-    @GetMapping(value = "/{id}")
-    public GameListDTO findById(@PathVariable Long id){
-        GameListDTO result = gameListService.findById(id);
+    @GetMapping(value = "/{listId}/games")
+    public List<GameDTO> findByList(@PathVariable Long listId){
+        List<GameDTO> result = gameService.findByList(listId);
         return result;
     }
 }

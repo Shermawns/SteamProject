@@ -1,6 +1,7 @@
 package com.Shermawn.GameTomato.dto;
 
 import com.Shermawn.GameTomato.models.Game;
+import com.Shermawn.GameTomato.projetctions.GameProjection;
 
 public class GameDTO {
     private Long id;
@@ -15,6 +16,13 @@ public class GameDTO {
         year = entity.getYear();
         imgUrl = entity.getImgUrl();
         shortDescription = entity.getShortDescription();
+    }
+    public GameDTO(GameProjection games) {
+        id = games.getId();
+        title = games.getTitle();
+        year = games.getYear();
+        imgUrl = games.getImgUrl();
+        shortDescription = games.getShortDescription();
     }
 
     public Long getId() {
